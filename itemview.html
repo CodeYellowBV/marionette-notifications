@@ -1,0 +1,15 @@
+<div class="notification notification-<%-type%>">
+    <% if (prepend_content) { %>
+        <strong><%-prepend_content%></strong>:
+    <% } %>
+
+    <%-content%>
+
+    <% if (call) { %>
+        – <a href="#" class="_call-back">Call again</a>
+    <% } if (link) { %>
+        – <a href="<%-link%>" class="_link"><%-linkText%></a>
+    <% } %>
+
+    <a href="#" class="_close action-small icon-delete"></a>
+</div>
