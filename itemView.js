@@ -1,7 +1,7 @@
 define(function (require) {
     'use strict';
     var Marionette = require('marionette'),
-        TItem = require('text!./itemview.html'),
+        TItem = require('text!./itemView.html'),
         _ = require('underscore'),
         vent = require('vent');
 
