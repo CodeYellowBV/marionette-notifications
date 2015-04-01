@@ -13,17 +13,32 @@ define(function (require) {
         tagName: 'div',
         ui: {
             'close' : '._close',
-            'callBack' : '._call-back',
             'link': '._link'
         },
         events: {
             'mouseenter': 'onMouseEnter',
             'mouseleave': 'onMouseLeave',
             'click @ui.close': 'close',
-            'click @ui.callBack': 'callBack',
             'click @ui.link': 'clickLink'
         },
         delayTimer: null,
+        templateHelpers: function () {
+            return {
+                link: this.getHref()
+            };
+        },
+        /**
+         * Return a correct href. If 'link' is a function we don't want to return this.
+         */
+        getHref: function () {
+            var link = this.model.get('link');
+
+            if (link) {
+                return _.isFunction(link) ? '#' : link;
+            }
+
+            return null;
+        },
         render: function () {
             this.$el.html(this.template(this.model.attributes));
             this.$el.hide();
@@ -54,6 +69,12 @@ define(function (require) {
             this.model.destroy();
         },
         clickLink: function (e) {
+            if (_.isFunction(this.model.get('link'))) {
+                e.preventDefault();
+
+                this.model.get('link')();
+            }
+
             this.model.destroy();
         },
         destroy: function () {

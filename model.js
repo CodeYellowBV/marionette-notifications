@@ -5,9 +5,9 @@ define(function (require) {
     return Model.extend({
         defaults: function () {
             return {
-                prepend_content: null,
+                prependContent: null,
                 content: '',
-                // Possible options: info, error, undo
+                // Possible options: info, error, success
                 type: 'info',
                 // Set to false to disable
                 closeAfter: 3000,
