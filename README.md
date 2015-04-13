@@ -41,7 +41,7 @@ define(function (require) {
                 content: 'User is successfully deleted.'
             });
         }
-    };
+    });
 });
 ```
 
