@@ -1,5 +1,11 @@
 {
     "name": "marionette-notifications",
     "version": "0.0.3",
-    "private": true
+    "private": true,
+    "author": "Kees Kluskens <kees@codeyellow.nl>",
+    "description": "Show notifications in a region.",
+    "repository": {
+        "type": "git",
+        "url": "https://bitbucket.org/codeyellow/marionette-notifications"
+    }
 }
