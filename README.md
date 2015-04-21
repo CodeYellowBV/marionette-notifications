@@ -74,6 +74,7 @@ For now, no CSS is added. You can copy/paste this to use as a base:
     display: flex;
     flex-flow: column wrap;
     align-items: center;
+    pointer-events: none;
 }
 
 .notification {
@@ -86,6 +87,7 @@ For now, no CSS is added. You can copy/paste this to use as a base:
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: 10px 10px;
+    pointer-events: all;
 
     a {
         text-decoration: underline;
