@@ -1,15 +1,25 @@
 define(function (require) {
     'use strict';
-    var Marionette = require('marionette'),
-        TItem = require('text!./itemView.html'),
-        _ = require('underscore'),
-        vent = require('vent');
+    var Marionette = require('marionette');
+    var _ = require('underscore');
+
+    var template =
+        '<div class="notification notification-<%-type%>">' +
+        '    <% if (prependContent) { %>' +
+        '        <strong><%-prependContent%></strong>:' +
+        '    <% } %>' +
+        '    <%-content%>' +
+        '    <% if (link) { %>' +
+        '        – <a href="<%-link%>" class="_link"><%-linkText%></a>' +
+        '    <% } %>' +
+        '    <a href="#" class="_close action-small icon-delete"></a>' +
+        '</div>';
 
     /**
      * @property {model/notification} model
      */
     return Marionette.ItemView.extend({
-        template: _.template(TItem),
+        template: _.template(template),
         tagName: 'div',
         ui: {
             'close' : '._close',

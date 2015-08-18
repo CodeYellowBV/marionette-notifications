@@ -1,8 +1,8 @@
 define(function (require) {
     'use strict';
-    var Marionette = require('marionette'),
-        VItem = require('./itemView'),
-        CNotification = require('./collection');
+    var Marionette = require('marionette');
+    var VItem = require('./itemView');
+    var CNotification = require('./collection');
 
     return Marionette.CollectionView.extend({
         className: 'notifications',

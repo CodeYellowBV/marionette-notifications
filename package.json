@@ -1,9 +1,9 @@
 {
     "name": "marionette-notifications",
     "version": "0.0.3",
-    "private": true,
+    "license": "MIT",
     "author": "Kees Kluskens <kees@codeyellow.nl>",
-    "description": "Show notifications in a region.",
+    "description": "Show notifications in a Marionette region.",
     "repository": {
         "type": "git",
         "url": "https://bitbucket.org/codeyellow/marionette-notifications"

@@ -1,8 +1,7 @@
 define(function (require) {
     'use strict';
-
-    var Collection = require('crux/collection'),
-        MNotification = require('./model');
+    var Collection = require('crux/collection');
+    var MNotification = require('./model');
 
     return Collection.extend({
         model: MNotification,
