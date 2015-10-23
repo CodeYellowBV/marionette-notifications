@@ -120,8 +120,8 @@ For now, no CSS is added. You can copy/paste this to use as a base:
 | `content` | Content of the notification. | `string` | `''` |
 | `type` | Type of the notification. Must be one of these: `error`, `info` or `success`. | `string` | `'info'` |
 | `closeAfter` | Close the popup after x ms. | `integer` | `3000` |
-| `linkText` | Add a link after the `content`. | `string` | `null` |
-| `link` | URL of the link. Can also be a callback. If a callback, the url will be set to `#`. | `mixed` | `null` |
+| `linkText` | Add a link after the `content`. Can also be an array of text | `string || [string]` | `null` |
+| `link` | URL of the link. Can also be a callback. If a callback, the url will be set to `#`. Can also be an array of links or callbacks.| `mixed` | `null` |
 
 Shortcuts for adding a notification:
 `this.info(options)`, `this.error(options)` and `this.success(options)`.

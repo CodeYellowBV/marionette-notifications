@@ -9,9 +9,9 @@ define(function (require) {
         '        <strong><%-prependContent%></strong>:' +
         '    <% } %>' +
         '    <%-content%>' +
-        '    <% if (link) { %>' +
-        '        – <a href="<%-link%>" class="_link"><%-linkText%></a>' +
-        '    <% } %>' +
+        '    <% _.each(links, function (linkItem, i) { %>' +
+        '        – <a href="<%-linkItem%>" class="_link _id-<%-i%>"><%-linkText[i]%></a>' +
+        '    <% }) %>' +
         '    <a href="#" class="_close action-small icon-delete"></a>' +
         '</div>';
 
@@ -33,24 +33,20 @@ define(function (require) {
         },
         delayTimer: null,
         templateHelpers: function () {
-            return {
-                link: this.getHref()
-            };
+            return _.extend({
+                links: this.getHrefs(),
+            }, this.model.attributes)
         },
         /**
-         * Return a correct href. If 'link' is a function we don't want to return this.
+         * Returns the corrent for every link. If 'link' is a function we don't want to return this.
          */
-        getHref: function () {
-            var link = this.model.get('link');
-
-            if (link) {
+        getHrefs: function () {
+            return _.map(this.model.get('link'), function(link) {
                 return _.isFunction(link) ? '#' : link;
-            }
-
-            return null;
+            });
         },
         render: function () {
-            this.$el.html(this.template(this.model.attributes));
+            this.$el.html(_.template(template)(this.templateHelpers()));
             this.$el.hide();
         },
         onShow: function() {
@@ -79,10 +75,14 @@ define(function (require) {
             this.model.destroy();
         },
         clickLink: function (e) {
-            if (_.isFunction(this.model.get('link'))) {
+            e.preventDefault();
+            // We need the link at index i. The index is stored in the className as _id-i.
+            var index = e.currentTarget.className.match(/_id-([0-9]*)/)[1];
+            var link = this.model.get('link')[index];
+            if (_.isFunction(link)) {
                 e.preventDefault();
 
-                this.model.get('link')();
+                link();
             }
 
             this.model.destroy();
