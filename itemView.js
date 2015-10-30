@@ -45,8 +45,7 @@ define(function (require) {
                 return _.isFunction(link) ? '#' : link;
             });
         },
-        render: function () {
-            this.$el.html(_.template(template)(this.templateHelpers()));
+        onRender: function () {
             this.$el.hide();
         },
         onShow: function() {
