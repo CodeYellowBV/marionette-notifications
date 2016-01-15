@@ -3,9 +3,17 @@
   "version": "0.2.1",
   "license": "MIT",
   "author": "Kees Kluskens <kees@codeyellow.nl>",
-  "description": "Show notifications in a Marionette region.",
+  "description": "Show notifications in a Marionette region",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/codeyellow/marionette-notifications"
-  }
+    "url": "https://github.com/CodeYellowBV/marionette-notifications"
+  },
+  "bugs": {
+    "url": "https://github.com/CodeYellowBV/marionette-notifications/issues"
+  },
+  "keywords": [
+    "backbone",
+    "marionette"
+  ],
+  "license": "ISC"
 }
