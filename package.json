@@ -1,7 +1,7 @@
 {
   "name": "marionette-notifications",
-  "version": "0.2.1",
-  "license": "MIT",
+  "version": "0.2.2",
+  "license": "ISC",
   "author": "Kees Kluskens <kees@codeyellow.nl>",
   "description": "Show notifications in a Marionette region",
   "repository": {
@@ -14,6 +14,5 @@
   "keywords": [
     "backbone",
     "marionette"
-  ],
-  "license": "ISC"
+  ]
 }
