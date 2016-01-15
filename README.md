@@ -6,10 +6,15 @@ Some features:
 - When a notification is added that already has the same content as a notification that already exists, no notification is added.
 - A notification will disappear after 3 seconds. When hovering over a notification, it will not disappear.
 
+Installation:
 
-## Install
+```
+$ npm install marionette-notifications --save
+```
 
-Install with npm. Then add this to your require.js config file:
+## Usage
+
+Add this to your require.js config file:
 
 ```js
 'shim': {
