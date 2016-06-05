@@ -14,39 +14,27 @@ $ npm install marionette-notifications --save
 
 ## Usage
 
-Add this to your require.js config file:
-
-```js
-'shim': {
-    'marionette-notifications': {
-        'deps': ['jquery', 'marionette', 'underscore']
-    }
-}
-```
+First make sure you have `underscore`, `marionette` and `backbone-crux` as a dependency.
 
 Now create a view where you listen to all events that need to trigger a notification (I will name it `view/notification.js`);
 
 ```js
-define(function (require) {
-    'use strict';
+var Notification = require('marionette-notifications');
+var vent = require('vent');
 
-    var Notification = require('marionette-notifications/collectionView'),
-        vent = require('vent');
+module.exports = Notification.extend({
+    initialize: function () {
+        Notification.prototype.initialize.call(this);
 
-    return Notification.extend({
-        initialize: function () {
-            Notification.prototype.initialize.call(this);
-
-            // Listen to events here, e.g.:
-            this.listenTo(vent, 'user:delete', this.onUserDelete);
-        },
-        onUserDelete: function () {
-            // Let's create the notification, shall we?
-            this.info({
-                content: 'User is successfully deleted.'
-            });
-        }
-    });
+        // Listen to events here, e.g.:
+        this.listenTo(vent, 'user:delete', this.onUserDelete);
+    },
+    onUserDelete: function () {
+        // Let's create the notification, shall we?
+        this.info({
+            content: 'User is successfully deleted.'
+        });
+    }
 });
 ```
 
