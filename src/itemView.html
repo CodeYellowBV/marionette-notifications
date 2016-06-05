@@ -1,0 +1,10 @@
+<div class="notification notification-<%-data.type%>">
+    <% if (data.prependContent) { %>
+        <strong><%-data.prependContent%></strong>:
+    <% } %>
+    <%-data.content%>
+    <% _.each(data.links, function (linkItem, i) { %>
+        – <a href="<%-linkItem%>" class="_link _id-<%-i%>"><%-data.linkText[i]%></a>
+    <% }) %>
+    <a href="#" class="_close action-small icon-delete"></a>
+</div>

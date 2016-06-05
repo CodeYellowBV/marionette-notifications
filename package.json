@@ -14,5 +14,18 @@
   "keywords": [
     "backbone",
     "marionette"
-  ]
+  ],
+  "main": "dist/marionette-notifications.js",
+  "files": [
+    "dist/**"
+  ],
+  "devDependencies": {
+    "rollup": "^0.26.4",
+    "rollup-plugin-jst": "CodeYellowBV/rollup-plugin-jst"
+  },
+  "scripts": {
+    "build": "rm -f dist/** && node build.js",
+    "preversion": "npm run -s build",
+    "version": "git add -A dist"
+  }
 }
