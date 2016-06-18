@@ -1,7 +1,7 @@
 (function (global, factory) {
       typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('backbone.marionette'), require('underscore'), require('backbone')) :
-      typeof define === 'function' && define.amd ? define(['backbone.marionette', 'underscore', 'backbone'], factory) :
-      (global.marionette-notifications = factory(global.Marionette,global._,global.Backbone));
+      typeof define === 'function' && define.amd ? define('marionette-notifications', ['backbone.marionette', 'underscore', 'backbone'], factory) :
+      (global.marionetteNotifications = factory(global.Marionette,global._,global.Backbone));
 }(this, function (Marionette,_$1,backbone) { 'use strict';
 
       Marionette = 'default' in Marionette ? Marionette['default'] : Marionette;
