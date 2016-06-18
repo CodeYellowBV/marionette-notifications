@@ -19,7 +19,8 @@ rollup.rollup({
             'backbone.marionette': 'Marionette',
             underscore: '_',
         },
-        moduleName: 'marionette-notifications',
+        moduleId: 'marionette-notifications',
+        moduleName: 'marionetteNotifications',
         dest: 'dist/marionette-notifications.js',
     });
 }).catch(function (err) {
