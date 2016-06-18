@@ -1,4 +1,4 @@
-import Collection from 'crux/collection';
+import { Collection } from 'backbone';
 import MNotification from './model';
 
 export default Collection.extend({

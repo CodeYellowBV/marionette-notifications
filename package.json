@@ -20,7 +20,7 @@
     "dist/**"
   ],
   "devDependencies": {
-    "rollup": "^0.26.4",
+    "rollup": "^0.31.2",
     "rollup-plugin-jst": "CodeYellowBV/rollup-plugin-jst"
   },
   "scripts": {

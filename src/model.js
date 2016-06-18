@@ -1,4 +1,4 @@
-import Model from 'crux/model';
+import { Model } from 'backbone';
 
 export default Model.extend({
     defaults: function () {

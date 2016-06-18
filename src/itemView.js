@@ -1,4 +1,4 @@
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import _ from 'underscore';
 import TItemView from './itemView.html';
 

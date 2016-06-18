@@ -4,16 +4,21 @@ const jst = require('rollup-plugin-jst');
 rollup.rollup({
     entry: 'src/index.js',
     external: [
-        'marionette',
+        'backbone',
+        'backbone.marionette',
         'underscore',
-        'crux/collection', 'crux/model',
     ],
     plugins: [
         jst(),
     ],
 }).then(function (bundle) {
     bundle.write({
-        format: 'cjs',
+        format: 'umd',
+        globals: {
+            backbone: 'Backbone',
+            'backbone.marionette': 'Marionette',
+            underscore: '_',
+        },
         moduleName: 'marionette-notifications',
         dest: 'dist/marionette-notifications.js',
     });
