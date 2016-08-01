@@ -1,11 +1,64 @@
 (function (global, factory) {
-      typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('backbone.marionette'), require('underscore'), require('backbone')) :
-      typeof define === 'function' && define.amd ? define('marionette-notifications', ['backbone.marionette', 'underscore', 'backbone'], factory) :
-      (global.marionetteNotifications = factory(global.Marionette,global._,global.Backbone));
-}(this, function (Marionette,_$1,backbone) { 'use strict';
+      typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('backbone'), require('backbone.marionette'), require('underscore')) :
+      typeof define === 'function' && define.amd ? define('marionette-notifications', ['exports', 'backbone', 'backbone.marionette', 'underscore'], factory) :
+      (factory((global.marionetteNotifications = global.marionetteNotifications || {}),global.Backbone,global.Marionette,global._));
+}(this, function (exports,backbone,Marionette,_$1) { 'use strict';
 
       Marionette = 'default' in Marionette ? Marionette['default'] : Marionette;
       _$1 = 'default' in _$1 ? _$1['default'] : _$1;
+
+      var MNotification = backbone.Model.extend({
+          defaults: function () {
+              return {
+                  prependContent: null,
+                  content: '',
+                  // Possible options: info, error, success
+                  type: 'info',
+                  // Set to false to disable
+                  closeAfter: 3000,
+                  // Array of links or callbacks after a link click
+                  link: [],
+                  linkText: [],
+              };
+          },
+          initialize: function (attrs, options) {
+              if (attrs && attrs.link && !(attrs.link instanceof Array)) this.set('link', [attrs.link]);
+              if (attrs && attrs.linkText && !(attrs.linkText instanceof Array)) this.set('linkText', [attrs.linkText]);
+              if (this.get('link').length !== this.get('linkText').length) {
+                  console.error('Link and linkText arrays are of unequal length.');
+                  return;
+              }
+          },
+
+          // This model has no API endpoints
+          sync: function () {
+              return null;
+          },
+
+          fetch: function () {
+              return null;
+          },
+
+          save: function () {
+              return null;
+          }
+      });
+
+      var CNotification = backbone.Collection.extend({
+          model: MNotification,
+          // This collection has no API endpoints
+
+          create: function (attributes, options) {
+              // If the notification content is already present in the collection, don't add it.
+              var isAlreadyAdded = this.some(function (mNotification) {
+                  return mNotification.get('content') === attributes.content;
+              });
+
+              if (!isAlreadyAdded) {
+                  return backbone.Collection.prototype.create.call(this, attributes, options);
+              }
+          }
+      });
 
       function TItemView(data) {
       var __t, __p = '', __e = _$1, __j = Array.prototype.join;
@@ -112,60 +165,7 @@
           }
       });
 
-      var MNotification = backbone.Model.extend({
-          defaults: function () {
-              return {
-                  prependContent: null,
-                  content: '',
-                  // Possible options: info, error, success
-                  type: 'info',
-                  // Set to false to disable
-                  closeAfter: 3000,
-                  // Array of links or callbacks after a link click
-                  link: [],
-                  linkText: [],
-              };
-          },
-          initialize: function (attrs, options) {
-              if (attrs && attrs.link && !(attrs.link instanceof Array)) this.set('link', [attrs.link]);
-              if (attrs && attrs.linkText && !(attrs.linkText instanceof Array)) this.set('linkText', [attrs.linkText]);
-              if (this.get('link').length !== this.get('linkText').length) {
-                  console.error('Link and linkText arrays are of unequal length.');
-                  return;
-              }
-          },
-
-          // This model has no API endpoints
-          sync: function () {
-              return null;
-          },
-
-          fetch: function () {
-              return null;
-          },
-
-          save: function () {
-              return null;
-          }
-      });
-
-      var CNotification = backbone.Collection.extend({
-          model: MNotification,
-          // This collection has no API endpoints
-
-          create: function (attributes, options) {
-              // If the notification content is already present in the collection, don't add it.
-              var isAlreadyAdded = this.some(function (mNotification) {
-                  return mNotification.get('content') === attributes.content;
-              });
-
-              if (!isAlreadyAdded) {
-                  return backbone.Collection.prototype.create.call(this, attributes, options);
-              }
-          }
-      });
-
-      var index = Marionette.CollectionView.extend({
+      var collectionView = Marionette.CollectionView.extend({
           className: 'notifications',
           childView: VItem,
           initialize: function () {
@@ -199,6 +199,11 @@
           }
       });
 
-      return index;
+      exports.Collection = CNotification;
+      exports.Model = MNotification;
+      exports.ItemView = VItem;
+      exports.CollectionView = collectionView;
+
+      Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
