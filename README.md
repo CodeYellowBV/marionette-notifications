@@ -14,12 +14,12 @@ $ npm install marionette-notifications --save
 
 ## Usage
 
-First make sure you have `underscore`, `marionette` and `backbone-crux` as a dependency.
+First make sure you have `underscore`, `marionette` and `backbone` as a dependency.
 
 Now create a view where you listen to all events that need to trigger a notification (I will name it `view/notification.js`);
 
 ```js
-var Notification = require('marionette-notifications');
+var Notification = require('marionette-notifications').CollectionView;
 var vent = require('vent');
 
 module.exports = Notification.extend({
@@ -43,7 +43,7 @@ In your template, create a div: `<div id="_notifications></div>`. Then add this 
 ```js
 app.addRegions({
     notification: '#_notification'
-})
+});
 ```
 
 Now show the region:
